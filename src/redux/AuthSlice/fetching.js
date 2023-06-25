@@ -14,3 +14,10 @@ export const login = async user => {
 
   return data;
 };
+
+export const logOut = async user => {
+  const { data } = await axios.post('/users/logout', user);
+  console.log(data);
+
+  return data;
+};

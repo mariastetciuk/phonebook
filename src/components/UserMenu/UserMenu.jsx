@@ -1,13 +1,18 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAuth } from 'redux/selectors';
 import css from './UserMenu.module.css';
+import { logoutThunk } from 'redux/AuthSlice/operations';
 
 const UserMenu = () => {
   const { user } = useSelector(getAuth);
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(logoutThunk());
+  };
   return (
     <div className={css.wrapper}>
       <p>{user.name}</p>
-      <button>Logout</button>
+      <button onClick={handleClick}>Logout</button>
     </div>
   );
 };

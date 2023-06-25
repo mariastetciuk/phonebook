@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Contacts from 'pages/contacts/Contacts';
 import Layout from './Layout/Layout';
 import css from './App.module.css';
@@ -13,6 +13,7 @@ export const App = () => {
           <Route path="register" element={<Register />} />
           <Route path="contacts" element={<Contacts />} />
           <Route path="login" element={<Login />} />
+          <Route path="*" element={<Navigate to="/" replace={true} />}></Route>
         </Route>
       </Routes>
     </div>
