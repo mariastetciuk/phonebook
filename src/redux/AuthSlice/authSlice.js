@@ -6,16 +6,16 @@ const handleRegisterFulfilled = (state, { payload }) => {
   state.token = payload.token;
   state.user = payload.user;
 };
-const handleLogoutFulfilled = (state, { payload }) => {
+
+const handleLogoutFulfilled = state => {
   state.isLoggedIn = false;
-  state.token = '';
+  state.token = null;
   state.user = { name: null, email: null };
-  console.log(payload);
 };
 
 const initialeState = {
   user: { name: null, email: null },
-  token: '',
+  token: null,
   isLoggedIn: false,
 };
 

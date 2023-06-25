@@ -19,15 +19,14 @@ export function ContactList() {
 
   return (
     <ul className={css.contacts__list}>
-      {contacts.map(({ id, name, phone }) => {
+      {contacts.map(({ id, name, number }) => {
         return (
           <li className={css.contacts__item} key={id}>
-            {name}: <span className={css.contacts__span}>{phone}</span>
+            {name}: <span className={css.contacts__span}>{number}</span>
             <button
               className={css.contacts__btn}
               type="button"
               onClick={() => {
-                console.log(id, name, phone);
                 dispatch(deleteContactThunk(id));
               }}
             >
