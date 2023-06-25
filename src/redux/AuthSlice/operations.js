@@ -13,7 +13,7 @@ export const registeringThunk = createAsyncThunk(
 );
 
 export const loginThunk = createAsyncThunk(
-  'auth/register',
+  'auth/login',
   (user, { rejectWithValue }) => {
     try {
       return login(user);
@@ -24,10 +24,10 @@ export const loginThunk = createAsyncThunk(
 );
 
 export const logoutThunk = createAsyncThunk(
-  'auth/register',
-  (user, { rejectWithValue }) => {
+  'auth/logout',
+  (_, { rejectWithValue }) => {
     try {
-      return logOut(user);
+      return logOut();
     } catch (error) {
       return rejectWithValue(error);
     }
