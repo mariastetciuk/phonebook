@@ -1,11 +1,26 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { login, registerUser, logOut } from './fetching';
+// import { login, registerUser, logOut, currentUser } from './fetching';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = '';
+  },
+};
 
 export const registeringThunk = createAsyncThunk(
   'auth/register',
-  (user, { rejectWithValue }) => {
+  async (user, { rejectWithValue }) => {
     try {
-      return registerUser(user);
+      const { data } = await axios.post('/users/signup', user);
+      token.set(data.token);
+
+      return data;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -14,9 +29,12 @@ export const registeringThunk = createAsyncThunk(
 
 export const loginThunk = createAsyncThunk(
   'auth/login',
-  (user, { rejectWithValue }) => {
+  async (user, { rejectWithValue }) => {
     try {
-      return login(user);
+      const { data } = await axios.post('/users/login', user);
+      token.set(data.token);
+
+      return data;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -25,9 +43,33 @@ export const loginThunk = createAsyncThunk(
 
 export const logoutThunk = createAsyncThunk(
   'auth/logout',
-  (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      return logOut();
+      const { data } = await axios.post('/users/logout');
+      token.unset();
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const currentUserThunk = createAsyncThunk(
+  'auth/refresh',
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const state = getState();
+      const currentToken = state.auth.token;
+
+      if (currentToken === null) {
+        return rejectWithValue();
+      }
+
+      token.set(currentToken);
+      const { data } = await axios.get('/users/current');
+      console.log(data);
+      return data;
     } catch (error) {
       return rejectWithValue(error);
     }

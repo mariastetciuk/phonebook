@@ -6,6 +6,7 @@ import { logoutThunk } from 'redux/AuthSlice/operations';
 const UserMenu = () => {
   const { user } = useSelector(getAuth);
   const dispatch = useDispatch();
+  // console.log(user);
   const handleClick = () => {
     dispatch(logoutThunk());
   };

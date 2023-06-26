@@ -1,4 +1,9 @@
-import { loginThunk, logoutThunk, registeringThunk } from './operations';
+import {
+  currentUserThunk,
+  loginThunk,
+  logoutThunk,
+  registeringThunk,
+} from './operations';
 import { createSlice } from '@reduxjs/toolkit';
 
 const handleRegisterFulfilled = (state, { payload }) => {
@@ -11,6 +16,12 @@ const handleLogoutFulfilled = state => {
   state.isLoggedIn = false;
   state.token = null;
   state.user = { name: null, email: null };
+};
+
+const handleCurrentUserFulfilled = (state, { payload }) => {
+  console.log(payload);
+  state.user = payload;
+  state.isLoggedIn = true;
 };
 
 const initialeState = {
@@ -26,7 +37,8 @@ const authSlice = createSlice({
     builder
       .addCase(loginThunk.fulfilled, handleRegisterFulfilled)
       .addCase(registeringThunk.fulfilled, handleRegisterFulfilled)
-      .addCase(logoutThunk.fulfilled, handleLogoutFulfilled);
+      .addCase(logoutThunk.fulfilled, handleLogoutFulfilled)
+      .addCase(currentUserThunk.fulfilled, handleCurrentUserFulfilled);
   },
 });
 
