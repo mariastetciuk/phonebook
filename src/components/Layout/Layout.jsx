@@ -15,10 +15,11 @@ const Layout = () => {
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
-
-            <li>
-              <NavLink to="/contacts">Contacts</NavLink>
-            </li>
+            {isLoggedIn && (
+              <li>
+                <NavLink to="/contacts">Contacts</NavLink>
+              </li>
+            )}
           </ul>
         </nav>
 
