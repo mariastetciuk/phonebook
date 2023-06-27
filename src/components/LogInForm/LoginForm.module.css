@@ -1,5 +1,5 @@
 .form {
-  width: 450px;
+  width: 400px;
   border: 4px solid rgb(42, 42, 161);
   border-radius: 10px;
   padding: 20px;
@@ -7,13 +7,18 @@
 }
 
 .input {
-  width: 400px;
+  width: 350px;
   height: 40px;
   margin-bottom: 10px;
   border-radius: 5px;
   border: 2px solid rgb(3, 3, 39);
   font-size: 20px;
   font-weight: 500;
+}
+
+.input:hover,
+.input:focus {
+  outline: 1px solid rgb(90, 170, 221);
 }
 
 .btn {

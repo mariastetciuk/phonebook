@@ -4,33 +4,34 @@ import css from './Layout.module.css';
 import UserMenu from 'components/UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
 import { getAuth } from 'redux/selectors';
+import { GoBook } from 'react-icons/go';
 
 const Layout = () => {
   const { isLoggedIn } = useSelector(getAuth);
   return (
     <>
       <header className={css.header}>
-        <nav>
+        <nav className={css.nav}>
           <ul className={css.list}>
-            <li>
-              <NavLink to="/">Home</NavLink>
+            <li className={css.nav__item}>
+              <GoBook fontSize="40px" fill="white" />
+              <NavLink to="/">PHONEBOOK</NavLink>
             </li>
             {isLoggedIn && (
-              <li>
+              <li className={css.nav__item}>
                 <NavLink to="/contacts">Contacts</NavLink>
               </li>
             )}
           </ul>
         </nav>
-
         {isLoggedIn ? (
           <UserMenu />
         ) : (
           <ul className={css.list}>
-            <li>
+            <li className={css.list__item}>
               <NavLink to="/register">Register</NavLink>
             </li>
-            <li>
+            <li className={css.list__item}>
               <NavLink to="/login">Login</NavLink>
             </li>
           </ul>

@@ -2,6 +2,7 @@ import { getContacts, getFilterValue } from 'redux/selectors';
 import css from './ContactList.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContactThunk } from 'redux/ContactsSlice/operations';
+import { GoTrash } from 'react-icons/go';
 
 export function ContactList() {
   const dispatch = useDispatch();
@@ -22,7 +23,8 @@ export function ContactList() {
       {contacts.map(({ id, name, number }) => {
         return (
           <li className={css.contacts__item} key={id}>
-            {name}: <span className={css.contacts__span}>{number}</span>
+            <p className={css.text}> {name}:</p>
+            <span className={css.contacts__span}>{number}</span>
             <button
               className={css.contacts__btn}
               type="button"
@@ -30,7 +32,7 @@ export function ContactList() {
                 dispatch(deleteContactThunk(id));
               }}
             >
-              Delete
+              <GoTrash fontSize="30px" />
             </button>
           </li>
         );

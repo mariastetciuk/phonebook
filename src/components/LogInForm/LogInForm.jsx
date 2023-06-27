@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { loginThunk } from 'redux/AuthSlice/operations';
+import css from './LoginForm.module.css';
 
 const LogInForm = () => {
   const dispatch = useDispatch();
@@ -16,14 +17,20 @@ const LogInForm = () => {
     event.target.reset();
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <input type="email" name="email" placeholder="Email" required />
-      </label>
-      <br />
-      <br />
+    <form className={css.form} onSubmit={handleSubmit}>
       <label>
         <input
+          className={css.input}
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+      </label>
+
+      <label>
+        <input
+          className={css.input}
           type="password"
           name="password"
           placeholder="Password"
@@ -32,9 +39,10 @@ const LogInForm = () => {
           title="Password must be thirteen symbols."
         />
       </label>
-      <br />
-      <br />
-      <button type="submit">Sing in</button>
+
+      <button className={css.btn} type="submit">
+        Sing in
+      </button>
     </form>
   );
 };

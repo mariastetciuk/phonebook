@@ -34,23 +34,21 @@ export const ContactForm = () => {
   return (
     <form className={css.form} onSubmit={handleFormSubmit}>
       <label className={css.label} htmlFor="">
-        Name
         <input
           className={css.input}
           type="text"
           name="name"
-          // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          placeholder="Name"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
       </label>
       <label className={css.label} htmlFor="">
-        Number
         <input
           className={css.input}
           type="tel"
           name="number"
-          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          placeholder="Number"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />

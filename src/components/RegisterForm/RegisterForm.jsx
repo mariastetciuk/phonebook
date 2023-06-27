@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { registeringThunk } from 'redux/AuthSlice/operations';
+import css from './RegisterForm.module.css';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -17,9 +18,10 @@ const RegisterForm = () => {
     event.target.reset();
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form className={css.form} onSubmit={handleSubmit}>
+      <label className={css.label}>
         <input
+          className={css.input}
           type="text"
           name="name"
           placeholder="Your name"
@@ -28,15 +30,20 @@ const RegisterForm = () => {
           title="Username must be two words separated by space."
         />
       </label>
-      <br />
-      <br />
-      <label>
-        <input type="email" name="email" placeholder="Email" required />
-      </label>
-      <br />
-      <br />
-      <label>
+
+      <label className={css.label}>
         <input
+          className={css.input}
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+      </label>
+
+      <label className={css.label}>
+        <input
+          className={css.input}
           type="password"
           name="password"
           placeholder="Password"
@@ -45,9 +52,10 @@ const RegisterForm = () => {
           title="Password must be thirteen symbols."
         />
       </label>
-      <br />
-      <br />
-      <button type="submit">Sing up</button>
+
+      <button className={css.btn} type="submit">
+        Sing up
+      </button>
     </form>
   );
 };
