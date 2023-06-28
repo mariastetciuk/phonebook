@@ -5,6 +5,7 @@ import UserMenu from 'components/UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
 import { getAuth } from 'redux/selectors';
 import { GoBook } from 'react-icons/go';
+import { Dna } from 'react-loader-spinner';
 
 const Layout = () => {
   const { isLoggedIn } = useSelector(getAuth);
@@ -38,7 +39,18 @@ const Layout = () => {
         )}
       </header>
       <main className={css.container}>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <Dna
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="dna-loading"
+              wrapperStyle={{}}
+              wrapperClass="dna-wrapper"
+            />
+          }
+        >
           <Outlet />
         </Suspense>
       </main>

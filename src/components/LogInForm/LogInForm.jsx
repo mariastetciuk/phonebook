@@ -12,9 +12,12 @@ const LogInForm = () => {
       password: event.target.elements.password.value,
     };
 
-    dispatch(loginThunk(user));
-
-    event.target.reset();
+    dispatch(loginThunk(user))
+      .unwrap()
+      .then(() => {
+        event.target.reset();
+      })
+      .catch(() => alert(`Incorrect login or password. Try again`));
   };
   return (
     <form className={css.form} onSubmit={handleSubmit}>
@@ -39,7 +42,6 @@ const LogInForm = () => {
           title="Password must be thirteen symbols."
         />
       </label>
-
       <button className={css.btn} type="submit">
         Sing in
       </button>
